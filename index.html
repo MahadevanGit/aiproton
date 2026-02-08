@@ -1,13 +1,195 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <title>AI PROTON PTE. LTD.</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Auto light / dark theme -->
+  <meta name="color-scheme" content="light dark">
+
+  <style>
+    :root {
+      --bg: #f6f7f9;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #475569;
+      --border: #e5e7eb;
+      --accent: #6366f1;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b0f1a;
+        --card: #12172a;
+        --text: #e5e7eb;
+        --muted: #9ca3af;
+        --border: #1f2937;
+        --accent: #818cf8;
+      }
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
+                   "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .container {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .card {
+      max-width: 720px;
+      width: 100%;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 32px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 28px;
+      letter-spacing: 0.3px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      margin-bottom: 24px;
+      font-size: 15px;
+    }
+
+    .section {
+      margin-top: 28px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+    }
+
+    .label {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .value {
+      font-size: 15px;
+    }
+
+    .product {
+      background: rgba(99,102,241,0.06);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      margin-top: 12px;
+    }
+
+    .product-title {
+      font-weight: 600;
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+    .disclaimer {
+      font-size: 14px;
+      color: var(--muted);
+      margin-top: 12px;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      margin-top: 32px;
+      font-size: 13px;
+      color: var(--muted);
+      text-align: center;
+    }
+  </style>
 </head>
-<body style="font-family: -apple-system, BlinkMacSystemFont, Arial; padding: 40px;">
-  <h1>AI PROTON PTE. LTD.</h1>
-  <p>Software Consultancy</p>
-  <p>Contact: <a href="mailto:admin@aiproton.net">admin@aiproton.net</a></p>
+
+<body>
+  <div class="container">
+    <main class="card">
+      <h1>AI PROTON PTE. LTD.</h1>
+      <div class="subtitle">
+        Software Consultancy & Product Development
+      </div>
+
+      <!-- Our Products -->
+      <div class="section">
+        <div class="label">Our Products</div>
+
+        <div class="product">
+          <div class="product-title">SG 4D Monitor</div>
+          <div class="value">
+            <strong>Singapore 4D Results & Insights</strong><br>
+            An independent app providing 4D draw results, statistics,
+            and number insights for Singapore users.
+          </div>
+
+          <div class="value" style="margin-top: 10px;">
+            Product website:
+            <a href="https://sglotterymonitor.aiproton.net" target="_blank" rel="noopener">
+              https://sglotterymonitor.aiproton.net
+            </a><br>
+            <span style="color: var(--muted); font-size: 14px;">
+              (Privacy policy and support information are available on the product website)
+            </span>
+          </div>
+
+          <div class="disclaimer">
+            <strong>Disclaimer:</strong><br>
+            SG 4D Monitor is an independent service and is not affiliated with
+            or endorsed by Singapore Pools. All results and insights are
+            provided for informational purposes only.
+          </div>
+        </div>
+      </div>
+
+      <!-- Company info -->
+      <div class="section">
+        <div class="label">Registered Address</div>
+        <div class="value">
+          319 Bukit Batok Street 33<br>
+          #06-48<br>
+          Singapore 650319
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="label">Contact</div>
+        <div class="value">
+          <a href="mailto:admin@aiproton.net">admin@aiproton.net</a>
+        </div>
+      </div>
+
+      <footer>
+        © 26 Feb 2018 – <span id="year"></span> AI PROTON PTE. LTD.
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
