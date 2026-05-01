@@ -1,43 +1,73 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <title>AI PROTON PTE. LTD.</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <!-- Auto light / dark theme -->
   <meta name="color-scheme" content="light dark">
 
   <style>
     :root {
       --bg: #f6f7f9;
-      --card: #ffffff;
+      --card: rgba(255, 255, 255, 0.7);
       --text: #0f172a;
       --muted: #475569;
-      --border: #e5e7eb;
+      --border: rgba(0, 0, 0, 0.08);
       --accent: #6366f1;
     }
 
     @media (prefers-color-scheme: dark) {
       :root {
         --bg: #0b0f1a;
-        --card: #12172a;
+        --card: rgba(18, 23, 42, 0.7);
         --text: #e5e7eb;
         --muted: #9ca3af;
-        --border: #1f2937;
+        --border: rgba(255, 255, 255, 0.08);
         --accent: #818cf8;
       }
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
-                   "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background: var(--bg);
+        "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+      background:
+        radial-gradient(circle at top left, rgba(99,102,241,0.15), transparent 40%),
+        radial-gradient(circle at bottom right, rgba(34,197,94,0.12), transparent 40%),
+        var(--bg);
+
       color: var(--text);
       line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* 🔷 Diamond / AI grid background */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+
+      background-image:
+        linear-gradient(45deg, rgba(99,102,241,0.06) 1px, transparent 1px),
+        linear-gradient(-45deg, rgba(99,102,241,0.06) 1px, transparent 1px);
+
+      background-size: 40px 40px;
+      opacity: 0.4;
+      pointer-events: none;
+      z-index: 0;
+
+      animation: gridMove 20s linear infinite;
+    }
+
+    @keyframes gridMove {
+      from { background-position: 0 0, 0 0; }
+      to { background-position: 80px 80px, -80px 80px; }
     }
 
     .container {
@@ -51,35 +81,123 @@
     .card {
       max-width: 720px;
       width: 100%;
+      backdrop-filter: blur(14px);
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 32px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+      border-radius: 20px;
+      padding: 36px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.12);
+
+      position: relative;
+      z-index: 1;
+
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeUp 0.8s ease forwards;
     }
 
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* 🔥 Attractive AI Title */
     h1 {
       margin: 0 0 8px;
-      font-size: 28px;
-      letter-spacing: 0.3px;
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: 0.6px;
+
+      background: linear-gradient(
+        90deg,
+        #6366f1,
+        #22c55e,
+        #06b6d4,
+        #a855f7
+      );
+      background-size: 300% auto;
+
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+
+      animation: gradientMove 6s linear infinite, fadeIn 1s ease forwards;
+      position: relative;
+    }
+
+    /* glow */
+    h1::after {
+      content: "AI PROTON PTE. LTD.";
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: -1;
+
+      filter: blur(14px);
+      opacity: 0.35;
+
+      background: linear-gradient(
+        90deg,
+        #6366f1,
+        #22c55e,
+        #06b6d4,
+        #a855f7
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* shine effect */
+    h1::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        120deg,
+        transparent 40%,
+        rgba(255,255,255,0.6),
+        transparent 60%
+      );
+      transform: translateX(-100%);
+      animation: shine 4s infinite;
+    }
+
+    @keyframes shine {
+      to {
+        transform: translateX(100%);
+      }
+    }
+
+    @keyframes gradientMove {
+      to {
+        background-position: 300% center;
+      }
     }
 
     .subtitle {
       color: var(--muted);
       margin-bottom: 24px;
       font-size: 15px;
+      animation: fadeIn 1.2s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     .section {
       margin-top: 28px;
       padding-top: 18px;
       border-top: 1px solid var(--border);
+      animation: fadeUp 0.8s ease forwards;
     }
 
     .label {
-      font-size: 13px;
+      font-size: 12px;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.1em;
       color: var(--muted);
       margin-bottom: 6px;
     }
@@ -89,17 +207,42 @@
     }
 
     .product {
-      background: rgba(99,102,241,0.06);
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), transparent);
       border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 18px;
+      border-radius: 16px;
+      padding: 20px;
       margin-top: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .product:hover {
+      transform: translateY(-4px) scale(1.01);
+      box-shadow: 0 12px 30px rgba(99, 102, 241, 0.15);
+    }
+
+    .product-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .product-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      object-fit: cover;
+      border: 1px solid var(--border);
+      transition: transform 0.25s ease;
+    }
+
+    .product:hover .product-icon {
+      transform: scale(1.08);
     }
 
     .product-title {
       font-weight: 600;
       font-size: 16px;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
     }
 
     .disclaimer {
@@ -111,10 +254,22 @@
     a {
       color: var(--accent);
       text-decoration: none;
+      position: relative;
     }
 
-    a:hover {
-      text-decoration: underline;
+    a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 0%;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    a:hover::after {
+      width: 100%;
     }
 
     footer {
@@ -122,6 +277,8 @@
       font-size: 13px;
       color: var(--muted);
       text-align: center;
+      opacity: 0;
+      animation: fadeIn 1.5s ease forwards;
     }
   </style>
 </head>
@@ -130,26 +287,33 @@
   <div class="container">
     <main class="card">
       <h1>AI PROTON PTE. LTD.</h1>
+
       <div class="subtitle">
         Software Consultancy & Product Development
       </div>
 
-      <!-- Our Products -->
       <div class="section">
         <div class="label">Our Products</div>
 
         <div class="product">
-          <div class="product-title">SG 4D Monitor</div>
+          <div class="product-header">
+            <img
+              src="https://raw.githubusercontent.com/MahadevanGit/sg-lottery-monitor-web/main/4DMon_005_padded_android.jpeg"
+              alt="App Icon"
+              class="product-icon" />
+            <div class="product-title">SG 4D•TOTO Monitor</div>
+          </div>
+
           <div class="value">
-            <strong>Singapore 4D Results & Insights</strong><br>
-            An independent app providing 4D draw results, statistics,
+            <strong>Singapore 4D•TOTO Results & Insights</strong><br>
+            An independent app providing 4D•TOTO draw results, statistics,
             and number insights for Singapore users.
           </div>
 
           <div class="value" style="margin-top: 10px;">
             Product website:
             <a href="https://sglotterymonitor.aiproton.net" target="_blank" rel="noopener">
-              https://sglotterymonitor.aiproton.net
+              SgLotteryMonitor
             </a><br>
             <span style="color: var(--muted); font-size: 14px;">
               (Privacy policy and support information are available on the product website)
@@ -158,14 +322,13 @@
 
           <div class="disclaimer">
             <strong>Disclaimer:</strong><br>
-            SG 4D Monitor is an independent service and is not affiliated with
+            SG 4D•TOTO Monitor is an independent service and is not affiliated with
             or endorsed by Singapore Pools. All results and insights are
             provided for informational purposes only.
           </div>
         </div>
       </div>
 
-      <!-- Company info -->
       <div class="section">
         <div class="label">Registered Address</div>
         <div class="value">
@@ -192,4 +355,5 @@
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
+
 </html>
